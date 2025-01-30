@@ -1,0 +1,15 @@
+services:
+ - type: worker
+   name: slg-md-demo
+   env: docker
+   plan: free
+   dockerfilePath: ./Dockerfile
+   envVars:
+    - key: SESSION_ID
+      value: SLG~
+    - key: BOT_INFO
+      value: SLG;SLG-MD
+    - key: SUDO
+      value: 237693755398
+    - key: ANTILINK
+      value: "true"
