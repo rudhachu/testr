@@ -2,13 +2,14 @@ const fs = require("fs").promises;
 const path = require("path");
 const express = require("express");
 const config = require("./config");
-const { connect, MakeSession, patch, parseDir } = require("./lib");
+const { connect, writeSession, patch, parseDir } = require("./lib");
 const { getandRequirePlugins } = require("./lib/database/plugins");
 global.__basedir = __dirname;
 
 async function initialize() {
   try {
-    await MakeSession();
+    await patch();
+    await writeSession();
     await parseDir(path.join(__dirname, "/lib/database/"));
     console.log("Syncing Database");
     await config.DATABASE.sync();
